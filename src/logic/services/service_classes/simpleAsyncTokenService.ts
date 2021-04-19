@@ -5,10 +5,15 @@ import { ValidateCredentialsCommand } from '../../commands/validateCredentailsCo
 
 export class SimpleAsyncTokenService {
 
-
+    /**
+     * Simple method that validates and generates UserToken
+     * @param credentials Credentials to validate and generate UserToken
+     * @returns Promise<UserToken>
+     */
     requestToken(credentials: Credentials):Promise<UserToken> {
         return new Promise( (resolve, reject) => {
-
+            
+            //Validate the credentials, if successfull, return a Promise with the User instance
             let credentials_command = new ValidateCredentialsCommand(credentials)
             credentials_command.execute().then(user => {
                 let token_command = new IssueTokenCommand(user)

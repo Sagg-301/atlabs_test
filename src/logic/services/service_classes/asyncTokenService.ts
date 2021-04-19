@@ -3,8 +3,16 @@ import {User} from '../../../models/user'
 import {UserToken} from '../../../models/userToken'
 const logger = require('../../../loaders/logger')
 
+/**
+ * AsyncTokenService implementation
+ */
 export class AsyncTokenService {
 
+    /**
+     * 
+     * @param credentials Credentials of an User
+     * @returns Promise<User>
+     */
     authenticate(credentials: Credentials): Promise<User> {
         return new Promise((resolve, reject) =>{
             try {
@@ -17,6 +25,11 @@ export class AsyncTokenService {
         })
     }
 
+    /**
+     * Given a user issues a token with the format {userId}_{current date}
+     * @param user User
+     * @returns Promise<UserToken>
+     */
     issueToken(user: User): Promise<UserToken> {
         return new Promise( (resolve, reject) => {
             try {
